@@ -11,9 +11,18 @@ public class Note {
     private String header;
 
     private String text;
-    
 
-
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User user;
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Integer getId() {
         return id;

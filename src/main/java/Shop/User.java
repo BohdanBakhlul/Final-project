@@ -17,6 +17,12 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes = new ArrayList<>();
 
+    public void addNote(Note note) {
+        notes.add(note);
+//        note.setUser(this);
+    }
+
+
     public List<Note> getNotes() {
         return notes;
     }
