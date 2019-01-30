@@ -48,6 +48,23 @@ public class Car {
         this.spec_list = spec_list;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Delivery> deliveryList = new ArrayList<>();
+
+
+
+    public void addDeliveries(Delivery Delivery) { deliveryList.add(Delivery);
+    }
+
+
+    public List<Delivery> getDeliveryList() {
+        return deliveryList;
+    }
+
+    public void setDeliveryList(List<Delivery> deliveryList) {
+        this.deliveryList = deliveryList;
+    }
+
     public Integer getId() {
         return id;
     }

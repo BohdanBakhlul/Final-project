@@ -1,6 +1,8 @@
 package carsdb;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Orders {
@@ -13,6 +15,40 @@ public class Orders {
     private String comments;
 
     private Integer amount;
+
+//    @OneToOne(mappedBy = "orders", cascade = CascadeType.ALL)
+//    private List<Delivery> delivery_list = new ArrayList<>();
+//
+//    public void addDelivery(Delivery Delivery) {
+//        delivery_list.add(Delivery);
+//    }
+//
+//
+//    public List<Delivery> getDelivery_list() {
+//        return delivery_list;
+//    }
+//
+//    public void setDelivery_list(List<Delivery> delivery_list) {
+//        this.delivery_list = delivery_list;
+//    }
+
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Delivery> delivery_list = new ArrayList<>();
+//
+//
+//
+//    public void addDelivery(Delivery Delivery) {
+//        delivery_list.add(Delivery);
+//    }
+//
+//
+//    public List<Delivery> getDelivery_list() {
+//        return delivery_list;
+//    }
+//
+//    public void setDelivery_list(List<Delivery> delivery_list) {
+//        this.delivery_list = delivery_list;
+//    }
 
 //    public Car getCar() {
 //        return car;

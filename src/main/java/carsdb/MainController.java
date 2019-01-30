@@ -1,10 +1,7 @@
 package carsdb;
 
-import carsdb.CarRepository;
-import carsdb.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +16,7 @@ public class MainController {
     private CarRepository carRepository;
     private OrdersRepository ordersRepository;
     private SpecsRepository specsRepository;
+    private DeliveryRepository deliveryRepository;
 
     private Car defcar = null;
 
@@ -75,10 +73,33 @@ public class MainController {
         return "Saved";
     }
 
+    @GetMapping(path="/adddelivery")
+    public @ResponseBody String addNewDelivery (@RequestParam String type
+            ,  @RequestParam Integer quantity , @RequestParam Integer car_id) {
+
+        Delivery x = new Delivery();
+        x.setType(type);
+        x.setQuantity(quantity);
+        Optional<Car> v = Optional.of(new Car());
+        v =carRepository.findById(car_id);
+
+        v.get().addDeliveries(x);
+
+        carRepository.save(v.get());
+
+        return "Saved";
+    }
+
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Car> getAllCars() {
         return carRepository.findAll();
+    }
+
+    @GetMapping(path="/delete")
+    public @ResponseBody
+    void deleteAllCars() {
+        carRepository.deleteAll();
     }
 
 //    @GetMapping(path="/greeting")
