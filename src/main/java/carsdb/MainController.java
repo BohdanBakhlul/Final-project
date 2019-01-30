@@ -4,6 +4,7 @@ import carsdb.CarRepository;
 import carsdb.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ public class MainController {
     @Autowired
     private CarRepository carRepository;
     private OrdersRepository ordersRepository;
+    private SpecsRepository specsRepository;
 
     private Car defcar = null;
 
@@ -32,15 +34,6 @@ public class MainController {
         return "Saved";
     }
 
-//    @GetMapping(path="/login")
-//    public @ResponseBody String login (@RequestParam String email) {
-//
-//        User n = new User();
-//        n.setName(name);
-//        n.setEmail(email);
-//        userRepository.save(n);
-//        return "Saved";
-//    }
 
 
 
@@ -63,9 +56,35 @@ public class MainController {
         return "Saved";
     }
 
+    @GetMapping(path="/addspec")
+    public @ResponseBody String addNewSpec (@RequestParam String body
+            , @RequestParam String color,  @RequestParam Integer engine_size , @RequestParam Integer car_id) {
+
+        Specs a = new Specs();
+        a.setColor(color);
+        a.setBody(body);
+        a.setEngine_size(engine_size);
+
+        Optional<Car> v = Optional.of(new Car());
+        v = carRepository.findById(car_id);
+
+        v.get().addSpecs(a);
+
+        carRepository.save(v.get());
+
+        return "Saved";
+    }
+
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Car> getAllCars() {
         return carRepository.findAll();
     }
+
+//    @GetMapping(path="/greeting")
+//    public @ResponseBody String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "greeting";
+//    }
+
 }

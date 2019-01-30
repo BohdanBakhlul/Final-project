@@ -30,6 +30,24 @@ public class Car {
         this.order_list = order_list;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Specs> spec_list = new ArrayList<>();
+
+
+
+    public void addSpecs(Specs Specs) {
+        spec_list.add(Specs);
+    }
+
+
+    public List<Specs> getSpec_list() {
+        return spec_list;
+    }
+
+    public void setSpec_list(List<Specs> spec_list) {
+        this.spec_list = spec_list;
+    }
+
     public Integer getId() {
         return id;
     }
