@@ -15,6 +15,8 @@ public class Car {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orders> order_list = new ArrayList<>();
 
+
+
     public void addOrders(Orders Orders) {
         order_list.add(Orders);
     }

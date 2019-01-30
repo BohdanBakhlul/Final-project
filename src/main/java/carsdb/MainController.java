@@ -18,7 +18,7 @@ public class MainController {
     private CarRepository carRepository;
     private OrdersRepository ordersRepository;
 
-    private Car currentcar = null;
+    private Car defcar = null;
 
 
     @GetMapping(path="/add")
@@ -62,6 +62,7 @@ public class MainController {
 
         return "Saved";
     }
+
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Car> getAllCars() {
