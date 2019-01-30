@@ -49,6 +49,24 @@ public class Car {
     }
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Carcreator> carcreatorList = new ArrayList<>();
+
+
+
+    public void addCreator(Carcreator Carcreator) {
+        carcreatorList.add(Carcreator);
+    }
+
+
+    public List<Carcreator> getCarcreatorList() {
+        return carcreatorList;
+    }
+
+    public void setCarcreatorList(List<Carcreator> carcreatorList) {
+        this.carcreatorList = carcreatorList;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Delivery> deliveryList = new ArrayList<>();
 
 

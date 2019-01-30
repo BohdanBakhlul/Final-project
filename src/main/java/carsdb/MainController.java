@@ -90,6 +90,24 @@ public class MainController {
         return "Saved";
     }
 
+    @GetMapping(path="/addcreator")
+    public @ResponseBody String addNewCreator (@RequestParam String name
+            , @RequestParam String surname,  @RequestParam Integer car_id) {
+
+        Carcreator g = new Carcreator();
+        g.setName(name);
+        g.setSurname(surname);
+
+        Optional<Car> q = Optional.of(new Car());
+        q = carRepository.findById(car_id);
+
+        q.get().addCreator(g);
+
+        carRepository.save(q.get());
+
+        return "Saved";
+    }
+
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Car> getAllCars() {
@@ -101,6 +119,7 @@ public class MainController {
     void deleteAllCars() {
         carRepository.deleteAll();
     }
+
 
 //    @GetMapping(path="/greeting")
 //    public @ResponseBody String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
